@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { UserService } from './user.service';
+import { User } from './user';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,22 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'users-app';
+
+  users: User[]
+
+  constructor(private usersvc: UserService) {
+
+  }
+
+
+  ngOnInit() {
+    this.usersvc.getUsers().then((users) => {
+      this.users = users;
+    })
+  }
+
+
+  getUsers() {
+    return this.usersvc.getUsers();
+  }
 }

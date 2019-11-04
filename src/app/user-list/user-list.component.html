@@ -1,0 +1,17 @@
+<div>
+  <ul>
+    <li
+      *ngFor="let user of users; let i = index;"
+      (click)="selectIndex(i)">
+        
+        <p
+        [ngClass]="{'selected': selectedIndex === i}"
+        (click)="selectUser(user)">{{user.firstName}} {{user.lastName}}
+        </p>
+        </li>
+  </ul>
+</div>
+
+<app-user-details
+  *ngIf="selectedUser"
+  [user]="selectedUser"></app-user-details>
